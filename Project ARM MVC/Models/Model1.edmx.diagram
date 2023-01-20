@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98b196bedae34508970f217c2f6787a3" Name="Diagram1">
+        <EntityTypeShape EntityType="ARMPROJECT1Model.Admin" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.Category" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.Content" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.Practice" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.Study" Width="1.5" PointX="10.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.User" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ARMPROJECT1Model.WContent" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="ARMPROJECT1Model.FK_Content_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ARMPROJECT1Model.FK_WContent_Content" ManuallyRouted="false" />
+        <AssociationConnector Association="ARMPROJECT1Model.FK_Practice_WContent" ManuallyRouted="false" />
+        <AssociationConnector Association="ARMPROJECT1Model.FK_Study_User2" ManuallyRouted="false" />
+        <AssociationConnector Association="ARMPROJECT1Model.FK_Study_WContent" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARMPROJECT1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Admin_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin_Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Category_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Content" Relationship="Self.FK_Content_Category" FromRole="Category" ToRole="Content" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="Content_Id" />
+    </Key>
+    <Property Name="Content_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content_CategoryID" Type="Int32" />
+    <Property Name="Content_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Content_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Content_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Content_Category" FromRole="Content" ToRole="Category" />
+    <NavigationProperty Name="WContent" Relationship="Self.FK_WContent_Content" FromRole="Content" ToRole="WContent" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="Practice_Id" />
+    </Key>
+    <Property Name="Practice_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Practice_WContentID" Type="Int32" />
+    <Property Name="Practice_A" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Practice_B" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Practice_C" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Practice_D" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Practice_yes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="WContent" Relationship="Self.FK_Practice_WContent" FromRole="Practice" ToRole="WContent" />
+  </EntityType>
+  <EntityType Name="Study">
+    <Key>
+      <PropertyRef Name="Study_Id" />
+    </Key>
+    <Property Name="Study_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Study_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Study_UserId" Type="Int32" />
+    <Property Name="Study_WcontentID" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Study_User2" FromRole="Study" ToRole="User" />
+    <NavigationProperty Name="WContent" Relationship="Self.FK_Study_WContent" FromRole="Study" ToRole="WContent" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="User_Age" Type="Int32" />
+    <NavigationProperty Name="Study" Relationship="Self.FK_Study_User2" FromRole="User" ToRole="Study" />
+  </EntityType>
+  <EntityType Name="WContent">
+    <Key>
+      <PropertyRef Name="WContent_Id" />
+    </Key>
+    <Property Name="WContent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WContent_ContentID" Type="Int32" />
+    <Property Name="WContent_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WContent_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="WContent_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Content" Relationship="Self.FK_WContent_Content" FromRole="WContent" ToRole="Content" />
+    <NavigationProperty Name="Practice" Relationship="Self.FK_Practice_WContent" FromRole="WContent" ToRole="Practice" />
+    <NavigationProperty Name="Study" Relationship="Self.FK_Study_WContent" FromRole="WContent" ToRole="Study" />
+  </EntityType>
+  <Association Name="FK_Content_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_Id" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="Content_CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WContent_Content">
+    <End Role="Content" Type="Self.Content" Multiplicity="0..1" />
+    <End Role="WContent" Type="Self.WContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Content">
+        <PropertyRef Name="Content_Id" />
+      </Principal>
+      <Dependent Role="WContent">
+        <PropertyRef Name="WContent_ContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_WContent">
+    <End Role="WContent" Type="Self.WContent" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WContent">
+        <PropertyRef Name="WContent_Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="Practice_WContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_User2">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="Study_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_WContent">
+    <End Role="WContent" Type="Self.WContent" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WContent">
+        <PropertyRef Name="WContent_Id" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="Study_WcontentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ARMPROJECT1Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Content" EntityType="Self.Content" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" />
+    <EntitySet Name="Study" EntityType="Self.Study" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="WContent" EntityType="Self.WContent" />
+    <AssociationSet Name="FK_Content_Category" Association="Self.FK_Content_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WContent_Content" Association="Self.FK_WContent_Content">
+      <End Role="Content" EntitySet="Content" />
+      <End Role="WContent" EntitySet="WContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_WContent" Association="Self.FK_Practice_WContent">
+      <End Role="WContent" EntitySet="WContent" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_User2" Association="Self.FK_Study_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Study" EntitySet="Study" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_WContent" Association="Self.FK_Study_WContent">
+      <End Role="WContent" EntitySet="WContent" />
+      <End Role="Study" EntitySet="Study" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

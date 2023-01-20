@@ -1,0 +1,81 @@
+﻿@model Project_ARM_MVC.Models.Content
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout5.cshtml";
+
+}
+
+
+<div class="card text-white bg-primary mb-3" style=" max-width: 50rem; margin-top:30px; margin-bottom:0px; margin-left:auto; margin-right:auto;" ">
+
+    <form method="post" action="@Url.Action("Edit")" enctype="multipart/form-data">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Content_Image)
+
+            <div class="card-header text-center">เเก้ไขข้อมูล</div>
+            <div class="card-body">
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                   
+
+                    <div class="form-group" style="margin-top:0px; margin-bottom:20px; margin-left:20px; margin-right:0px;">
+                        @Html.LabelFor(model => model.Content_CategoryID, "หัวข้อเรื่อง", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("Content_CategoryID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Content_CategoryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:0px; margin-bottom:20px; margin-left:20px; margin-right:0px;">
+                        @Html.LabelFor(model => model.Content_Name, "ชื่อเนื้อหา", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Content_Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Content_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:0px; margin-bottom:20px; margin-left:20px; margin-right:0px;">
+                        @Html.LabelFor(model => model.Content_Image, "รูป", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input name="UpFile" type="file" accept="image/* " class="form-control-file" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:0px; margin-bottom:20px; margin-left:20px; margin-right:0px;">
+                        @Html.LabelFor(model => model.Content_Data, "ข้อมูล", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 " >
+                            @Html.EditorFor(model => model.Content_Data, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Content_Data, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group"style="margin-top:0px; margin-bottom:20px; margin-left:20px; margin-right:0px;">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-success" value="Save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+
+</div>
+
+<div style="text-align:center;">
+    <a href="@Url.Action("Index","Contents")"><button type="button" class="btn btn-info">กลับ</button></a>
+
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

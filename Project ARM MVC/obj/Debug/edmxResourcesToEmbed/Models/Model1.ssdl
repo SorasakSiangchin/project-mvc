@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ARMPROJECT1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admin_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Admin_Pass" Type="varchar" MaxLength="50" />
+    <Property Name="Admin_Image" Type="image" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Category_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Category_Image" Type="image" />
+    <Property Name="Category_Data" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="Content_Id" />
+    </Key>
+    <Property Name="Content_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content_CategoryID" Type="int" />
+    <Property Name="Content_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Content_Image" Type="image" />
+    <Property Name="Content_Data" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="Practice_Id" />
+    </Key>
+    <Property Name="Practice_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Practice_WContentID" Type="int" />
+    <Property Name="Practice_A" Type="varchar" MaxLength="50" />
+    <Property Name="Practice_B" Type="varchar" MaxLength="50" />
+    <Property Name="Practice_C" Type="varchar" MaxLength="50" />
+    <Property Name="Practice_D" Type="varchar" MaxLength="50" />
+    <Property Name="Practice_yes" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Study">
+    <Key>
+      <PropertyRef Name="Study_Id" />
+    </Key>
+    <Property Name="Study_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Study_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Study_UserId" Type="int" />
+    <Property Name="Study_WcontentID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="50" />
+    <Property Name="User_Pass" Type="varchar" MaxLength="50" />
+    <Property Name="User_Image" Type="image" />
+    <Property Name="User_Age" Type="int" />
+  </EntityType>
+  <EntityType Name="WContent">
+    <Key>
+      <PropertyRef Name="WContent_Id" />
+    </Key>
+    <Property Name="WContent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WContent_ContentID" Type="int" />
+    <Property Name="WContent_Name" Type="varchar" MaxLength="50" />
+    <Property Name="WContent_Image" Type="image" />
+    <Property Name="WContent_Data" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Content_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_Id" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="Content_CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_WContent">
+    <End Role="WContent" Type="Self.WContent" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WContent">
+        <PropertyRef Name="WContent_Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="Practice_WContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_User2">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="Study_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_WContent">
+    <End Role="WContent" Type="Self.WContent" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WContent">
+        <PropertyRef Name="WContent_Id" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="Study_WcontentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WContent_Content">
+    <End Role="Content" Type="Self.Content" Multiplicity="0..1" />
+    <End Role="WContent" Type="Self.WContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Content">
+        <PropertyRef Name="Content_Id" />
+      </Principal>
+      <Dependent Role="WContent">
+        <PropertyRef Name="WContent_ContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ARMPROJECT1ModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Study" EntityType="Self.Study" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WContent" EntityType="Self.WContent" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Content_Category" Association="Self.FK_Content_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_WContent" Association="Self.FK_Practice_WContent">
+      <End Role="WContent" EntitySet="WContent" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_User2" Association="Self.FK_Study_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Study" EntitySet="Study" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_WContent" Association="Self.FK_Study_WContent">
+      <End Role="WContent" EntitySet="WContent" />
+      <End Role="Study" EntitySet="Study" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WContent_Content" Association="Self.FK_WContent_Content">
+      <End Role="Content" EntitySet="Content" />
+      <End Role="WContent" EntitySet="WContent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

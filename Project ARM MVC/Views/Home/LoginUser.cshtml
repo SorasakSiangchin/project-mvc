@@ -1,0 +1,168 @@
+﻿@model Project_ARM_MVC.Models.User
+
+@{
+    ViewBag.Title = "LoginUser";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+
+<!-- loader  -->
+<!-- end loader -->
+<!-- header -->
+<header>
+    <!-- header inner -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 logo_section">
+                <div class="full">
+                    <div class="center-desk">
+                        <div class="logo"> <a href="index.html"><img src="~/images/logo-arm.png" alt="#"></a> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="menu-area">
+                    <div class="limit-box">
+                        <nav class="main-menu">
+                            <ul class="menu-area-main">
+                                <li class="active">
+                                    <a href="@Url.Action("Index","Home")"><i class="fas fa-home " style="font-size:50px; "></i></a>
+                                </li>
+                                <li>
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-danger">เกี่ยวกับ</button>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-danger">ความหมาย</button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <a href="@Url.Action("LayoutMarketing","Home")"><button type="button" class="btn btn-danger">ติดต่อเรา</button></a>
+                                    </div>
+                                </li>
+
+
+                                <li>
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-danger">เข้าสู่ระบบ</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
+                                                <a class="dropdown-item" href="@Url.Action("LoginUser","Home")">User <i class="fas fa-user" style="font-size:24px"></i></a>
+                                                <a class="dropdown-item" href="@Url.Action("LoginAdmin","Home")">Admin <i class="fas fa-user-shield" style="font-size:24px"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end section -->
+    <!-- section -->
+    <div class="section layout_padding dark_bg">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h3 class="text-center">ผู้ใช้</h3>
+                    </div>
+                </div>
+                <div class="full blog_cont">
+
+                    <div style="padding-top:2px; text-align:center; padding-left:250px; padding-right:250px; ">
+                        <div class="card bg-light mb-3" style="max-width: 100rem;">
+
+                            @if (TempData["Erroruser"] != null)
+                            {
+                                <div class="card-header" style="background-color:Red;">
+                                    
+                                        รหัสผิดครับบ
+                                    
+                                </div>
+                            }
+
+                            <br />
+                            <br />
+                          
+                            <div class="card-body">
+
+                                <div style="padding-top:50px;padding-left:100px; padding-right:1px;padding-bottom:70px;">
+
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+
+                                        <br />
+
+                                        <div class="form-horizontal">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @placeholder = "ชื่อผู้เข้าใช้", @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.User_Pass, new { htmlAttributes = new { @placeholder = "รหัสผ่าน", @class = "form-control", @type = "Password" } })
+                                                    @Html.ValidationMessageFor(model => model.User_Pass, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            @*<div class="form-group">
+                                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                                    <label for="remember"> Remember Me</label>
+                                                </div>*@
+                                            <div class="form-group" style="margin-left:120px; margin-right:auto;">
+                                                <div class="col-md-offset-2 col-md-7">
+                                                    <button type="submit" class="btn  btn-info"><span class="fas fa-sign-in-alt">เข้าสู่ระบบ</span></button>
+                                                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create","Users")';"><span class="fas fa-user-plus">สมัครสมาชิก</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                                @section Scripts {
+                                    @Scripts.Render("~/bundles/jqueryval")
+                                }
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+

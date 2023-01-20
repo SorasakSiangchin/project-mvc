@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ARMPROJECT1Model1StoreContainer" CdmEntityContainer="ARMPROJECT1Entities1">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+          <ScalarProperty Name="Admin_Name" ColumnName="Admin_Name" />
+          <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
+          <ScalarProperty Name="Admin_Image" ColumnName="Admin_Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Image" ColumnName="Category_Image" />
+          <ScalarProperty Name="Category_Data" ColumnName="Category_Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contents">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.Content">
+        <MappingFragment StoreEntitySet="Content">
+          <ScalarProperty Name="Content_Id" ColumnName="Content_Id" />
+          <ScalarProperty Name="Content_CategoryID" ColumnName="Content_CategoryID" />
+          <ScalarProperty Name="Content_Name" ColumnName="Content_Name" />
+          <ScalarProperty Name="Content_Image" ColumnName="Content_Image" />
+          <ScalarProperty Name="Content_Data" ColumnName="Content_Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Practices">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.Practice">
+        <MappingFragment StoreEntitySet="Practice">
+          <ScalarProperty Name="Practice_Id" ColumnName="Practice_Id" />
+          <ScalarProperty Name="Practice_WContentID" ColumnName="Practice_WContentID" />
+          <ScalarProperty Name="Practice_A" ColumnName="Practice_A" />
+          <ScalarProperty Name="Practice_B" ColumnName="Practice_B" />
+          <ScalarProperty Name="Practice_C" ColumnName="Practice_C" />
+          <ScalarProperty Name="Practice_D" ColumnName="Practice_D" />
+          <ScalarProperty Name="Practice_yes" ColumnName="Practice_yes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Studies">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.Study">
+        <MappingFragment StoreEntitySet="Study">
+          <ScalarProperty Name="Study_Id" ColumnName="Study_Id" />
+          <ScalarProperty Name="Study_Name" ColumnName="Study_Name" />
+          <ScalarProperty Name="Study_UserId" ColumnName="Study_UserId" />
+          <ScalarProperty Name="Study_WcontentID" ColumnName="Study_WcontentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Pass" ColumnName="User_Pass" />
+          <ScalarProperty Name="User_Image" ColumnName="User_Image" />
+          <ScalarProperty Name="User_Age" ColumnName="User_Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WContents">
+      <EntityTypeMapping TypeName="ARMPROJECT1Model1.WContent">
+        <MappingFragment StoreEntitySet="WContent">
+          <ScalarProperty Name="WContent_Id" ColumnName="WContent_Id" />
+          <ScalarProperty Name="WContent_ContentID" ColumnName="WContent_ContentID" />
+          <ScalarProperty Name="WContent_Name" ColumnName="WContent_Name" />
+          <ScalarProperty Name="WContent_Image" ColumnName="WContent_Image" />
+          <ScalarProperty Name="WContent_Data" ColumnName="WContent_Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

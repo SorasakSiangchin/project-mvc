@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Project_ARM_MVC.Models.Content>
+
+@{
+    ViewBag.Title = "IndexUser";
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+}
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<br />
+<br />
+<br />
+
+
+
+
+<div style="border: 2px solid black; border-radius:20px; background-color: rgb(247, 113, 36); margin-left:450px; margin-right:450px;">
+    <h3 style="text-align:center;">
+        ชื่อเนื้อหา
+    </h3>
+
+</div>
+<br />
+<br />
+<div class="container" style="margin-top:30px;margin-bottom:0px;">
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+            <div style="background-color:azure"
+                 class="card  text-center mb-2 col-md-10 col-lg-4 col-xl-3">
+                <div class="card-header">
+                    ชื่อ
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@item.Content_Name</h5>
+
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+<a href="@Url.Action("Index123","Users")"><button type="button" class="btn btn-info">กลับ</button></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<table class="table table-active table-bordered" style="width:100%; text-align:center;">
+    <tr>-->
+        @*<th>
+                ชื่อหัวข้อ
+            </th>*@
+        <!--<th>
+            ชื่อเนื้อหา
+        </th>-->
+
+        @*<th>
+                ข้อมูล
+            </th>
+            <th>
+                รูป
+            </th>*@
+
+    <!--</tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category_Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content_Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Content_Data)
+            </td>
+            <td>
+                @if (item.Content_Image != null)
+                {
+                    <div class="text-center">
+                        <img src="data:image/png;base64,@Convert.ToBase64String(item.Content_Image)"
+                             width="100" style="border-radius: 20px">
+                    </div>
+
+                }
+            </td>
+
+
+        </tr>
+    }
+
+</table>-->
+
